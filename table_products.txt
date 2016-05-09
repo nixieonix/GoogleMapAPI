@@ -1,0 +1,20 @@
+$query_seller = "SELECT markers.id, markers.name, products.name, products.price
+FROM markers, products
+WHERE markers.id=seller_id
+ORDER BY markers.id";
+
+$result_seller = mysql_query($query_seller);
+if (!$result) {
+  die('Invalid query: ' . mysql_error());
+}
+
+
+while ($row = @mysql_fetch_assoc($result_seller))){
+  echo '<seller' ;
+  echo 'id="' . parseToXML($row['id'])  '">';
+  echo '<products>'. parseToXML($row['name']);
+  echo '</products>';
+  echo '<price>'. parseToXML($row['price']);
+  echo '</prce>';
+  echo '</seller>';
+}
